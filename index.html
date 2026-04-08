@@ -256,24 +256,12 @@
       gap: 10px;
       text-decoration: none;
     }
-    .logo-icon {
-      width: 38px;
-      height: 38px;
-      background: var(--accent);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
     }
-    .logo-icon svg { width: 22px; height: 22px; fill: #fff; }
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-    .logo-text .brand { font-family: var(--ff-display); font-weight: 700; font-size: 1rem; color: #fff; letter-spacing: -0.01em; }
-    .logo-text .sub   { font-size: 0.7rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
 
     nav { display: flex; align-items: center; gap: 4px; }
     nav a {
@@ -1006,7 +994,24 @@
     .footer-bottom a { color: rgba(255,255,255,.4); }
     .footer-bottom a:hover { color: var(--accent); }
 
-    /* === SCROLL ANIMATIONS === */
+    /* === YOUTUBE EMBED === */
+    .yt-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow-lg);
+    }
+    .yt-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
     .fade-up {
       opacity: 0;
       transform: translateY(28px);
@@ -1061,14 +1066,8 @@
   <!-- ═══ HEADER ═══ -->
   <header>
     <div class="container header-inner">
-      <a href="#home" class="logo" aria-label="Klusservice Eindhoven – naar homepagina">
-        <div class="logo-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7 7 7 0 0 1-7 7Z"/><path d="M14.31 9a4 4 0 0 0-6.6 4.42L9 12.14V14h1.86l1.28-1.28A4 4 0 0 0 14.31 9Z"/></svg>
-        </div>
-        <div class="logo-text">
-          <span class="brand">Klusservice Eindhoven</span>
-          <span class="sub">Uw vakman in Eindhoven</span>
-        </div>
+      <a href="#home" class="logo" aria-label="Klusservice Eindhoven naar homepagina">
+        <img src="data:image/gif;base64,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" alt="KSE Klus Service Eindhoven logo" width="120" height="49" class="logo-img" loading="eager">
       </a>
       <nav aria-label="Hoofdnavigatie">
         <a href="#diensten">Diensten</a>
@@ -1265,6 +1264,26 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ VIDEO ═══ -->
+    <section id="video" aria-labelledby="video-h2" style="background:var(--bg); padding:80px 0;">
+      <div class="container">
+        <span class="section-label">Bekijk ons werk</span>
+        <h2 id="video-h2" style="margin-bottom:8px;">Klusservice Eindhoven in actie</h2>
+        <p class="section-intro" style="margin-bottom:36px;">Bekijk hoe Robert en zijn team badkamers verbouwen en renoveren in Eindhoven en omgeving.</p>
+        <div class="yt-wrap fade-up">
+          <iframe
+            src="https://www.youtube.com/embed/TIUib-a2oVI"
+            title="KSE Klus Service Eindhoven – Badkamers, Keukens, Woning Verbouwing en Renovatie"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            width="1280"
+            height="720"
+          ></iframe>
         </div>
       </div>
     </section>
